@@ -1,0 +1,4 @@
+drop all tables from given database name
+
+
+mysql -Nse 'show tables' DATABASE_NAME | while read table; do mysql -e "drop table $table" DATABASE_NAME; done
