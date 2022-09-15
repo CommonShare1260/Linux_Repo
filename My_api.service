@@ -1,0 +1,19 @@
+# This service location is /etc/systemd/system/
+# and its api location is /home/root/
+
+[Unit]
+Description=My application api (My_api)
+Before = network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
+
+[Service]
+Restart=on-failure
+#Restart=always
+RestartSec=5s
+ExecStartPre=/bin/sleep 10
+Environment=DISPLAY=:0
+XAUTHORITY=/home/root/.Xauthority
+ExecStart=/home/root/My_api
+
+[Install]
+WantedBy=multi-user.target
